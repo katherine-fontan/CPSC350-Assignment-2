@@ -61,6 +61,7 @@ void Board:: runClassic(int **grid){
   int h = 3;
   int w = 4;
   double density = 0.5;
+  int numNeighbors;
 
   for (int i = 0; i < h; ++i){
     for (int j = 0; j < w; ++j){
@@ -68,11 +69,11 @@ void Board:: runClassic(int **grid){
       int c = j;
 
 
-    numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c]
+  numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c]
       + grid[r+1][c-1]+ grid[r][c-1];
     }
   }
-  int **newGen= new int*[h]
+  int **newGen= new int*[h];
   for (int i = 0; i < w; i++) {
     // create rows
     newGen[i] = new int[h];

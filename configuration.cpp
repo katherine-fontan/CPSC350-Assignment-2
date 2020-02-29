@@ -1,4 +1,5 @@
 #include "configuration.h"
+#include "Board.h"
 #include <fstream>
 using namespace std;
 
@@ -45,8 +46,11 @@ void configuration::getConfig(int i)
   }
 
   //random board will be created
-  if(i = 2)
+  if(i == 2)
   {
+    Board* b = new Board();
+     b->boardGenerator();
+     cout << b -> grid << endl;
     //code for random board here
   }
 }
