@@ -1,10 +1,15 @@
+#include <iostream>
+#include "userinput.h"
 #include "ClassicMode.h"
 #include "Board.h"
-#include <iostream>
 
 using namespace std;
 
-int main (int argc, char** argv){
+int main (int argc, char** argv)
+{
+  userinput ask;
+  ask.askConfig();
+
 
 
 //assign the dimensions of the world based on input from input file;
