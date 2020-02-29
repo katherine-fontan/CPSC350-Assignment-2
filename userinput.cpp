@@ -12,15 +12,27 @@ void userinput::askConfig()
     if (input == 1)
     {
       config.getConfig(input);
-      break;
     }
     else if (input == 2)
     {
       config.getConfig(input);
-      break;
     }
     else
     {
       cout << "Invaid input. Try again. " << endl;
     }
 }
+
+void userinput::askBoardType()
+{
+  string response;
+  //gameMode mode;
+  cout << "Which game mode would you like to play in? \n Classic 'C', Donut 'D' or Mirror 'M' ";
+  cin >> response;
+
+  //switch(response)
+}
+
+//void userinput::askPauseOption(){
+
+//}

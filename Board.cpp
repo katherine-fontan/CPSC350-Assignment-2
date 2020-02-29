@@ -62,9 +62,6 @@ void Board:: runClassic(int **grid){
   int w = 4;
   double density = 0.5;
 
-  
-
-
   for (int i = 0; i < h; ++i){
     for (int j = 0; j < w; ++j){
       int r = i;
