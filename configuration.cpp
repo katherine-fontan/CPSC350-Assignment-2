@@ -37,6 +37,7 @@ void configuration::getConfig(int i)
         for(int j = 0; j < line2; j++) {
           f >> myArray[i][j];
           cout << myArray[i][j];
+
         }
         cout << endl;
     }
@@ -48,9 +49,9 @@ void configuration::getConfig(int i)
   //random board will be created
   if(i == 2)
   {
-    Board* b = new Board();
-     b->boardGenerator();
-     cout << b -> grid << endl;
     //code for random board here
+    //Board* b = new Board();
+     //b->boardGenerator();
+    // cout << b -> grid << endl;
   }
 }

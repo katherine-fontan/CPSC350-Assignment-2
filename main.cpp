@@ -18,9 +18,9 @@ int main (int argc, char** argv)
 
   //bool userInput = true;
   //call class of user inputs
-  //Board* b = new Board();
-   //b -> boardGenerator();
-   //cout << b -> grid << endl;
+  Board* b = new Board();
+   b -> boardGenerator();
+   cout << b -> grid << endl;
 
 
  //else if statement for donut

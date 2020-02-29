@@ -26,6 +26,7 @@ int Board::boardGenerator(){ /*pass in height, width and density*/
 
   }
 
+
   for(int r = 0; r < height; ++r){
     for (int c = 0; c < width; ++c){
       double randNum = ((double) rand() /(RAND_MAX + 1.0));
@@ -45,6 +46,7 @@ int Board::boardGenerator(){ /*pass in height, width and density*/
     }
     cout << endl;
   }
+
   runClassic(grid);
 
    return 0;
@@ -58,22 +60,30 @@ void Board:: run(){
 }
 
 void Board:: runClassic(int **grid){
+
   int h = 3;
   int w = 4;
   double density = 0.5;
   int numNeighbors;
+  cout << "runclassic"<<endl;
 
   for (int i = 0; i < h; ++i){
+    cout << "runclassic for loop 1"<<endl;
     for (int j = 0; j < w; ++j){
+      cout << "runclassic loop 2"<<endl;
       int r = i;
       int c = j;
 
+      if i != 0
+        numNeighbors += grid[]
 
-  numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c]
+
+      numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c]
       + grid[r+1][c-1]+ grid[r][c-1];
     }
   }
   int **newGen= new int*[h];
+  cout << "neighbors"<<endl;
   for (int i = 0; i < w; i++) {
     // create rows
     newGen[i] = new int[h];
