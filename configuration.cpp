@@ -1,4 +1,4 @@
-#include "main.h"
+#include "configuration.h"
 #include <fstream>
 using namespace std;
 
@@ -21,10 +21,23 @@ void configuration::getConfig(int i)
     }
     else
     {
-      //reading through file given and print out contents of file
-      while(f >> line)
-      {
-        //code for making file into an array
+      //reads first line and makes into row dimension
+      getline(f, line);
+      int line1 = stoi(line);
+      //reads second line an makes into column dimension
+      getline(f, line);
+      int line2 = stoi(line);
+
+      //initialize array
+      char myArray[line1][line2];
+
+      //read through array and print out array contents
+      for(int i = 0; i < line1; i++) {
+        for(int j = 0; j < line2; j++) {
+          f >> myArray[i][j];
+          cout << myArray[i][j];
+        }
+        cout << endl;
       }
     i = 0;
     f.close();
@@ -33,6 +46,6 @@ void configuration::getConfig(int i)
   //random board will be created
   if(i = 2)
   {
-    c//code for random board here
+    //code for random board here
   }
 }

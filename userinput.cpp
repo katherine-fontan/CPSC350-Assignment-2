@@ -1,4 +1,4 @@
-#include "main.h"
+#include "configuration.h"
 using namespace std;
 
 int main ()
