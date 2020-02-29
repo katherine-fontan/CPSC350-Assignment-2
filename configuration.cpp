@@ -38,11 +38,12 @@ void configuration::getConfig(int i)
           cout << myArray[i][j];
         }
         cout << endl;
-      }
+    }
     i = 0;
     f.close();
     }
   }
+
   //random board will be created
   if(i = 2)
   {
