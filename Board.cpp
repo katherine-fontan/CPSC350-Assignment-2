@@ -61,15 +61,7 @@ int** Board::boardGenerator(){ /*pass in height, width and density*/
     }
     cout << endl;
   }
-
-  //runClassic(grid);
-  /*for(int r = 0; r < height; ++r){
-    for (int c = 0; c < width; ++c){
-      cout << grid[r][c];
-    }
-    cout << endl;
-  }*/
-   return grid;
+  return grid;
 
 }
 
@@ -95,11 +87,6 @@ void Board::runClassic(int **grid, int height, int width){
     for (int j = 0; j < w; ++j){
       int r = i;
       int c = j;
-
-      //cout << "r is " << r << " right now" << endl;
-      //cout << "c is " << c << " right now" << endl;
-      //cout << "current value of matrix is " << grid[i][j] << endl;
-      //i is rows, j is columns
 
         if(i == 0 && j == 0){
           //top left
@@ -165,7 +152,6 @@ void Board::runClassic(int **grid, int height, int width){
   }
 
   int **newGen = new int*[h];
-  //cout << "newGen board created"<<endl;
   for (int i = 0; i < w; i++) {
     // create rows
     newGen[i] = new int[h];
@@ -208,14 +194,14 @@ void Board::runClassic(int **grid, int height, int width){
   //cout << "temp is deleted"<<endl;
 }
 
-void Board::updateBoard(int** grid)
+int** Board::updateBoard(int** grid)
 {
   for(int r=0; r < height; r++){
     for(int c=0; c < width; c++)
     {
       grid = newGen;
     }
-  }
+  } 
 }
 
 //make a current and next class printing out and copy from one another

@@ -10,7 +10,7 @@ class Board{
     int** boardGenerator();
     void runClassic(int** grid,int height, int width);
     void printBoard(int** grid);
-    void updateBoard(int** grid);
+    int** updateBoard(int** grid);
 
     void runDonut(int** grid);
     void runMirror(int** grid);

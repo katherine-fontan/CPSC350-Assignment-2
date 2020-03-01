@@ -14,7 +14,6 @@ UserInput:: ~UserInput(){
 void UserInput::askConfig()
 {
     int input;
-
     cout << "Would you like to: \n 1 - Specify a flat-file configuration or \n 2 - Generate a random configuration ";
     cin >> input;
 
@@ -121,9 +120,9 @@ void UserInput::getFile(int i)
           {
             boardArray[i][j] = 0;
           }
-          cout << boardArray[i][j];
+          //cout << boardArray[i][j];
         }
-        cout << endl;
+        //cout << endl;
       }
       f.close();
       }
