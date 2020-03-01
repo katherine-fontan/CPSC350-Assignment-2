@@ -59,32 +59,16 @@ int Board::boardGenerator(){ /*pass in height, width and density*/
    return 0;
 }
 
-void Board:: run(){
-
-  //switch statements for each game mode
-
-
-}
 
 void Board::runClassic(int **grid, int height, int width){
-
-  cout << "runclassic check 1"<< endl;
-  cout << "HEIGHT" << height << endl;
   int h = height;
-  cout << "runclassic check 2"<< endl;
-
   int w = width;
   double d = density;
   int numNeighbors;
   bool upper = true;
 
-
   for (int i = 0; i < h; ++i){
-    cout << "loop 1" << endl;
-
     for (int j = 0; j < w; ++j){
-      cout << "loop 2" << endl;
-
       int r = i;
       int c = j;
 
@@ -212,7 +196,7 @@ void Board:: runDonut(int **grid){
       int c = j;
 
 
-      //if statements to figure out number of neighbors // simiral to classic structure
+      //if statements to figure out number of neighbors // similar to classic structure
 
     }
   }

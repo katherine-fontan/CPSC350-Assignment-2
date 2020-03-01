@@ -52,9 +52,7 @@ void UserInput::askBoardType()
   switch(response)
   {
     case 'C': case 'c':
-      cout << "before run classic"<< endl;
       board = new Board(height, width);
-      cout << height << " " << width << endl;
       board->runClassic(fileArray,height,width);
       break;
     case 'D': case 'd':
@@ -66,9 +64,6 @@ void UserInput::askBoardType()
   }
 
 }
-  //run classic here, inherit board
-  //switch(response)
-
 
 //void UserInput::askPauseOption(){
 
@@ -96,23 +91,23 @@ void UserInput::getFile(int i)
     {
       //reads first line and makes into row dimension
       getline(f, line);
-      int line1 = stoi(line);
+      height = stoi(line);
       //reads second line an makes into column dimension
       getline(f, line);
-      int line2 = stoi(line);
+      width = stoi(line);
 
       //int fileArray[line1][line2];
-      fileArray = new int*[line1];
-      for (int i = 0; i < line2; i++){
-        fileArray[i] = new int[line1];
+      fileArray = new int*[height];
+      for (int i = 0; i < width; i++){
+        fileArray[i] = new int[height];
       }
 
       //initialize array
-      char myArray[line1][line2];
+      char myArray[height][width];
 
       //read through array and print out array contents
-      for(int i = 0; i < line1; i++) {
-        for(int j = 0; j < line2; j++) {
+      for(int i = 0; i < height; i++) {
+        for(int j = 0; j < width; j++) {
           f >> myArray[i][j];
           if (myArray[i][j] == 'X')
           {
@@ -131,9 +126,6 @@ void UserInput::getFile(int i)
     }
     i = 0;
     f.close();
-
-    //i = 0;
-    //boardFile.runClassic(fileArray);
     }
   }
 
