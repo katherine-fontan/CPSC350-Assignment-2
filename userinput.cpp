@@ -22,7 +22,8 @@ void UserInput::askConfig()
     {
       getFile(input);
       askBoardType(fileArray);
-    }
+
+      }
     else if (input == 2)
     {
       cout << "Choose the height: "<<endl;
@@ -33,18 +34,20 @@ void UserInput::askConfig()
 
       cout << "Choose the population density of the world greater than 0 and less than or equal to 1): " <<endl;
       cin >> density;
-      //config.getConfig(input);
       board = new Board(height, width, density);
       //board->boardGenerator();
 
-      int** b = board -> boardGenerator();
-      askBoardType(b);
+      //int** b = board-> boardGenerator();
+      //askBoard(b);
+      fileArray = board->boardGenerator();
+      askBoardType(fileArray);
     }
     else
     {
       cout << "Invaid input. Try again. " << endl;
     }
-}
+  }
+
 
 void UserInput::askBoardType(int** someArray)
 {
@@ -126,14 +129,21 @@ void UserInput::getFile(int i)
 
         }
         cout << endl;
-
     }
+
     i = 0;
     f.close();
+
+    //board = new Board(int height,int width);
+
+
     }
+
   }
 
 }
+
+  //classic mode working, 
 
 //two copies-- previous and current of next gen and current gen
 // object with pointers curr and next to keep track of successive generations

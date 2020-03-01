@@ -17,7 +17,7 @@ class Board{
 
     int** grid;
     int** newGenArray;
-    
+
 
     int height;
     int width;

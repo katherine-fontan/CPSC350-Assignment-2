@@ -55,7 +55,12 @@ int** Board::boardGenerator(){ /*pass in height, width and density*/
   }
 
   //runClassic(grid);
-
+  for(int r = 0; r < height; ++r){
+    for (int c = 0; c < width; ++c){
+      cout << grid[r][c];
+    }
+    cout << endl;
+  }
    return grid;
 }
 
@@ -65,7 +70,7 @@ void Board::runClassic(int **grid, int height, int width){
   int w = width;
   double d = density;
   int numNeighbors;
-
+  //int** temp = grid;
 
   for (int i = 0; i < h; ++i){
     for (int j = 0; j < w; ++j){
@@ -75,7 +80,7 @@ void Board::runClassic(int **grid, int height, int width){
       cout << "r is " << r << " right now" << endl;
       cout << "c is " << c << " right now" << endl;
       cout << "current value of matrix is " << grid[i][j] << endl;
-//i is rows, j is columns
+      //i is rows, j is columns
 
         if(i == 0 && j == 0){
           //top left
@@ -142,12 +147,11 @@ void Board::runClassic(int **grid, int height, int width){
 
   }
 
-  int **newGen= new int*[h];
-  cout << "neighbors"<<endl;
+  int **newGen = new int*[h];
+  cout << "newGen board created"<<endl;
   for (int i = 0; i < w; i++) {
     // create rows
     newGen[i] = new int[h];
-
   }
 
 //rules of game of life
@@ -178,13 +182,17 @@ void Board::runClassic(int **grid, int height, int width){
       }
     }
   }
+
   int** temp = grid;
-  
+
   grid = newGen;
-  cout << "let's delete temp" <<endl;
-  delete temp;
-  cout << "lets delete temp"<<endl;
+  cout << "before temp delete" <<endl;
+//delete temp;
+  cout << "temp is deleted"<<endl;
 }
+
+//make a current and next class printing out and copy from one another
+
 
 
 
