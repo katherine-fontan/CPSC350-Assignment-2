@@ -1,6 +1,6 @@
 #include <fstream>
 #include <iostream>
-#include "UserInput.h"
+#include "userinput.h"
 using namespace std;
 
 UserInput:: UserInput(){
@@ -35,7 +35,8 @@ void UserInput::askConfig()
       //config.getConfig(input);
       board = new Board(height, width, density);
       board -> boardGenerator();
-      
+
+
     }
     else
     {
@@ -45,20 +46,30 @@ void UserInput::askConfig()
 
 void UserInput::askBoardType()
 {
-  string response;
+  char response;
   //gameMode mode;
   cout << "Which game mode would you like to play in? \n Classic 'C', Donut 'D' or Mirror 'M' ";
   cin >> response;
 
-  if(response == "C"){
-
-
+  switch(response)
+  {
+    case 'C': case 'c':
+      //runClassic(board);
+      break;
+    case 'D': case 'd':
+      //runDonut(board);
+      break;
+    case 'M' : case 'm':
+      //runMirror(board);
+      break;
   }
+
+}
   //run classic here, inherit board
   //switch(response)
 
 
-}
+
 
 //void UserInput::askPauseOption(){
 
@@ -72,6 +83,7 @@ void UserInput::getConfig(int i)
     string fileName;
     ifstream f;
     string line;
+    Board boardFile;
     cout <<"Enter a filename. ";
     cin >> fileName;
 
@@ -90,23 +102,36 @@ void UserInput::getConfig(int i)
       getline(f, line);
       int line2 = stoi(line);
 
+      //int fileArray[line1][line2];
+      fileArray = new int*[line1];
+      for (int i = 0; i < line2; i++){
+        fileArray[i] = new int[line1];
+      }
+
       //initialize array
       char myArray[line1][line2];
 
       //read through array and print out array contents
       for(int i = 0; i < line1; i++) {
         for(int j = 0; j < line2; j++) {
-          if(myArray)
-
-
           f >> myArray[i][j];
-          cout << myArray[i][j];
+          if (myArray[i][j] == 'X')
+          {
+            fileArray[i][j] = 1;
+          }
+          else if (myArray[i][j] == '-')
+          {
+            fileArray[i][j] = 0;
+          }
+
+          cout << fileArray[i][j];
 
         }
         cout << endl;
     }
     i = 0;
     f.close();
+    //boardFile.runClassic(fileArray);
     }
   }
 
@@ -114,8 +139,6 @@ void UserInput::getConfig(int i)
   if(i == 2)
   {
     //code for random board here
-    //Board* b = new Board();
-     //b->boardGenerator();
-    // cout << b -> grid << endl;
+
   }
 }

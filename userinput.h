@@ -1,4 +1,3 @@
-
 #include "Board.h"
 #include <iostream>
 
@@ -13,6 +12,8 @@ class UserInput{
     void getConfig(int i);
 
     Board *board;
+
+    int** fileArray;
 
     int height;
     int width;

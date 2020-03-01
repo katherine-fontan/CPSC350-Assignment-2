@@ -50,7 +50,7 @@ int Board::boardGenerator(){ /*pass in height, width and density*/
     cout << endl;
   }
 
-  runClassic(grid);
+  //runClassic(grid);
 
    return 0;
 }
@@ -72,8 +72,10 @@ void Board:: runClassic(int **grid){
   bool upper = true;
 
   for (int i = 0; i < h; ++i){
+    cout << "loop 1" << endl;
 
     for (int j = 0; j < w; ++j){
+      cout << "loop 1" << endl;
 
       int r = i;
       int c = j;

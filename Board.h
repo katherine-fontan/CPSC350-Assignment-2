@@ -9,6 +9,9 @@ class Board{
     int boardGenerator();
     void run();
     void runClassic(int** grid);
+    void runClassicFile(int** array);
+
+    int** array;
 
     int** grid;
     int** newGenArray;
