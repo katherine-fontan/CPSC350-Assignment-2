@@ -13,7 +13,7 @@ class UserInput{
 
     Board *board;
 
-    int** fileArray = 0;
+    int** boardArray = 0;
 
     int height;
     int width;

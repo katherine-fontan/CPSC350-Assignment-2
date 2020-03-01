@@ -9,14 +9,14 @@ class Board{
     ~Board();
     int** boardGenerator();
     void runClassic(int** grid,int height, int width);
-    void runClassicFile(int** array);
+    void printBoard(int** grid);
+    void updateBoard(int** grid);
+
     void runDonut(int** grid);
     void runMirror(int** grid);
 
-    int** array;
-
     int** grid;
-    int** newGenArray;
+    int** newGen;
 
 
     int height;

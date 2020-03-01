@@ -21,12 +21,12 @@ void UserInput::askConfig()
     if (input == 1)
     {
       getFile(input);
-      askBoardType(fileArray);
-
-      }
+      askBoardType(boardArray);
+    }
     else if (input == 2)
     {
-      cout << "Choose the height: "<<endl;
+      getFile(input);
+      cout << "Choose the height: "<< endl;
       cin >> height;
 
       cout<< "Choose the width: "<< endl;
@@ -34,33 +34,37 @@ void UserInput::askConfig()
 
       cout << "Choose the population density of the world greater than 0 and less than or equal to 1): " <<endl;
       cin >> density;
-      board = new Board(height, width, density);
-      //board->boardGenerator();
 
-      //int** b = board-> boardGenerator();
-      //askBoard(b);
-      fileArray = board->boardGenerator();
-      askBoardType(fileArray);
+      board = new Board(height, width, density);
+      boardArray = board->boardGenerator();
+      askBoardType(boardArray);
     }
     else
     {
       cout << "Invaid input. Try again. " << endl;
     }
-  }
+}
 
 
 void UserInput::askBoardType(int** someArray)
 {
   char response;
   //gameMode mode;
-  cout << "Which game mode would you like to play in? \n Classic 'C', Donut 'D' or Mirror 'M' ";
+  cout << "Which game mode would you like to play in? \n Classic 'C', Donut 'D' or Mirror 'M' " << endl;
   cin >> response;
 
   switch(response)
   {
     case 'C': case 'c':
       board = new Board(height, width);
-      board->runClassic(someArray,height,width);
+      for (int i = 0; i < 5; ++i)
+      {
+        cout << endl;
+        cout << "Generation " << i << endl;
+        board->printBoard(someArray);
+        board->runClassic(someArray,height,width);
+        board->updateBoard(someArray);
+      }
       break;
     case 'D': case 'd':
       //runDonut(board);
@@ -69,13 +73,7 @@ void UserInput::askBoardType(int** someArray)
       //runMirror(board);
       break;
   }
-
 }
-
-//void UserInput::askPauseOption(){
-
-//}
-
 
 void UserInput::getFile(int i)
 {
@@ -84,15 +82,14 @@ void UserInput::getFile(int i)
     string fileName;
     ifstream f;
     string line;
-    Board boardFile;
-    cout <<"Enter a filename. ";
+    cout <<"Enter a filename. " << endl;
     cin >> fileName;
 
     f.open(fileName);
 
     if(!f)
     {
-      cout << "Filename was not found. Try again. ";
+      cout << "Filename was not found. Try again. " << endl;
     }
     else
     {
@@ -103,10 +100,10 @@ void UserInput::getFile(int i)
       getline(f, line);
       width = stoi(line);
 
-      //int fileArray[line1][line2];
-      fileArray = new int*[height];
+      //int boardArray[line1][line2];
+      boardArray = new int*[height];
       for (int i = 0; i < width; i++){
-        fileArray[i] = new int[height];
+        boardArray[i] = new int[height];
       }
 
       //initialize array
@@ -118,32 +115,21 @@ void UserInput::getFile(int i)
           f >> myArray[i][j];
           if (myArray[i][j] == 'X')
           {
-            fileArray[i][j] = 1;
+            boardArray[i][j] = 1;
           }
           else if (myArray[i][j] == '-')
           {
-            fileArray[i][j] = 0;
+            boardArray[i][j] = 0;
           }
-
-          cout << fileArray[i][j];
-
+          cout << boardArray[i][j];
         }
         cout << endl;
+      }
+      f.close();
+      }
+      i = 0;
     }
-
-    i = 0;
-    f.close();
-
-    //board = new Board(int height,int width);
-
-
-    }
-
   }
-
-}
-
-  //classic mode working, 
 
 //two copies-- previous and current of next gen and current gen
 // object with pointers curr and next to keep track of successive generations
