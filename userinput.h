@@ -9,11 +9,11 @@ class UserInput{
     void askConfig();
     void askBoardType();
     void askPauseOption();
-    void getConfig(int i);
+    void getFile(int i);
 
     Board *board;
 
-    int** fileArray;
+    int** fileArray = 0;
 
     int height;
     int width;

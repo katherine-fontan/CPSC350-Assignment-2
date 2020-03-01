@@ -6,6 +6,10 @@ using namespace std;
 Board:: Board(){
 
 }
+Board:: Board(int height, int width){
+  this->height = height;
+  this->width = width;
+}
 Board:: Board(int height, int width, double density){
   this->height = height;
   this->width = width;
@@ -62,20 +66,24 @@ void Board:: run(){
 
 }
 
-void Board:: runClassic(int **grid){
+void Board::runClassic(int **grid, int height, int width){
 
+  cout << "runclassic check 1"<< endl;
+  cout << "HEIGHT" << height << endl;
   int h = height;
+  cout << "runclassic check 2"<< endl;
+
   int w = width;
   double d = density;
   int numNeighbors;
-  cout << "runclassic"<<endl;
   bool upper = true;
+
 
   for (int i = 0; i < h; ++i){
     cout << "loop 1" << endl;
 
     for (int j = 0; j < w; ++j){
-      cout << "loop 1" << endl;
+      cout << "loop 2" << endl;
 
       int r = i;
       int c = j;
@@ -88,51 +96,59 @@ void Board:: runClassic(int **grid){
         if(i == 0 && j == 0){
           //top left
           //check if its upper
-
+          cout << "IN UPPER LEFT" << endl;
           numNeighbors = grid[r][c+1] + grid[r+1][c] + grid[r+1][r+1];
         }
         else if (i == 0 && j == w-1){
           //top right
+          cout << "IN UPPER RIGHT" << endl;
 
           numNeighbors = grid[r+1][c] + grid[r][c-1] + grid[r+1][c-1];
         }
         else if (i == h-1 && j == 0){
           //bottom left
           // this makes it lower
+          cout << "IN BOTTOM LEFT" << endl;
 
           numNeighbors = grid[r][c+1] + grid[r-1][c] + grid[r-1][c+1];
 
         }
         else if (i == h-1 && j == w-1){
           //bottom right
+          cout << "IN BOTTOM RIGHT" << endl;
 
           numNeighbors = grid[r-1][c] + grid[r][c-1] + grid[r-1][c-1];
         }
         else if (j == 0 && i != 0 && i != h-1){
           //left side
           //this accounts for sides
+          cout << "IN LEFT SIDES" << endl;
 
           numNeighbors = grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c] + grid[r+1][c+1];
 
         }
         else if(j == w-1 && i != 0 && i != h-1){
           //right side
+          cout << "IN RIGHT SIDES" << endl;
 
           numNeighbors = grid[r+1][c] + grid[r+1][c-1] + grid[r][c-1] + grid[r-1][c-1] + grid[r-1][c];
 
         }
         else if (j != 0 && i == 0 && j != w-1){
           //top side
+          cout << "IN TOP SIDES" << endl;
 
           numNeighbors = grid[r][c-1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1] + grid[r][c+1];
         }
         else if (i == h-1 && j != 0 && j != w-1){
+          cout << "IN BOTTOM SIDES" << endl;
           numNeighbors = grid[r][c-1] + grid[r][c+1] + grid[r-1][c+1] + grid[r-1][c] + grid[r-1][c-1];
 
         }
 
         else if(i != 0 && i != h-1 && j != 0 && j != w-1){
           //middle section
+          cout << "IN MIDDLE SECTIONS" << endl;
           numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1]+ grid[r][c-1];
         }
 

@@ -20,7 +20,7 @@ void UserInput::askConfig()
 
     if (input == 1)
     {
-      getConfig(input);
+      getFile(input);
     }
     else if (input == 2)
     {
@@ -34,9 +34,7 @@ void UserInput::askConfig()
       cin>>density;
       //config.getConfig(input);
       board = new Board(height, width, density);
-      board -> boardGenerator();
-
-
+      board->boardGenerator();
     }
     else
     {
@@ -54,7 +52,10 @@ void UserInput::askBoardType()
   switch(response)
   {
     case 'C': case 'c':
-      //runClassic(board);
+      cout << "before run classic"<< endl;
+      board = new Board(height, width);
+      cout << height << " " << width << endl;
+      board->runClassic(fileArray,height,width);
       break;
     case 'D': case 'd':
       //runDonut(board);
@@ -69,14 +70,12 @@ void UserInput::askBoardType()
   //switch(response)
 
 
-
-
 //void UserInput::askPauseOption(){
 
 //}
 
 
-void UserInput::getConfig(int i)
+void UserInput::getFile(int i)
 {
   while(i == 1)
   {
@@ -128,17 +127,18 @@ void UserInput::getConfig(int i)
 
         }
         cout << endl;
+
     }
     i = 0;
     f.close();
+
+    //i = 0;
     //boardFile.runClassic(fileArray);
     }
   }
 
-  //random board will be created
-  if(i == 2)
-  {
-    //code for random board here
-
-  }
 }
+
+//two copies-- previous and current of next gen and current gen
+// object with pointers curr and next to keep track of successive generations
+// then compare two generations with one another- draw/map out
