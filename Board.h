@@ -8,7 +8,7 @@ class Board{
     Board(int height, int width, double density);
     ~Board();
     int** boardGenerator();
-    void runClassic(int** grid,int height, int width);
+    int** runClassic(int** grid,int height, int width);
     void printBoard(int** grid);
     int** updateBoard(int** grid);
 

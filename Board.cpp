@@ -77,7 +77,7 @@ void Board::printBoard(int** grid)
   } cout << endl;
 }
 
-void Board::runClassic(int **grid, int height, int width){
+int** Board::runClassic(int **grid, int height, int width){
   int h = height;
   int w = width;
   double d = density;
@@ -184,9 +184,7 @@ void Board::runClassic(int **grid, int height, int width){
         //calculate stable count
       }
     }
-  }
-
-  //int** temp = grid;
+  } 
 
   //grid = newGen;
   //cout << "before temp delete" <<endl;
@@ -199,9 +197,9 @@ int** Board::updateBoard(int** grid)
   for(int r=0; r < height; r++){
     for(int c=0; c < width; c++)
     {
-      grid = newGen;
+      grid[r][c] == newGen[r][c];
     }
-  } 
+  } return grid;
 }
 
 //make a current and next class printing out and copy from one another
