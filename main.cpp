@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//int main (int argc, char** argv){
+int main (int argc, char** argv){
 
 
 //assign the dimensions of the world based on input from input file;
@@ -12,7 +12,12 @@ using namespace std;
 
   //bool userInput = true;
   //call class of user inputs
+  Board* b = new Board();
+   b -> boardGenerator();
+   cout << b -> grid << endl;
 
 
  //else if statement for donut
  //else if for mirror mode
+ return 0;
+}

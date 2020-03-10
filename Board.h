@@ -6,11 +6,12 @@ class Board{
     Board();
     ~Board();
     int boardGenerator();
+    void run();
+    void runClassic(int** grid);
 
-
-    int rows;
-    int columns;
-    int density;
+    int** grid;
+    int** newGenArray;
+  
     //do I need array here?
 
 };
