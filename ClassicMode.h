@@ -9,6 +9,7 @@ class ClassicMode{
     int numNeighbors();
     void cellGenerator(int numNeighbors);
 
+
     //int numNeighbors;
     //int stableCounts;
     //int length;

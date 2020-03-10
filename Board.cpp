@@ -42,5 +42,5 @@ int Board::boardGenerator(){ /*pass in height, width and density*/
        }
      }
    }
-   return board;
+   return 0;
 }
