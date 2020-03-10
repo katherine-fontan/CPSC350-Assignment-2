@@ -66,22 +66,77 @@ void Board:: runClassic(int **grid){
   double density = 0.5;
   int numNeighbors;
   cout << "runclassic"<<endl;
+  bool upper = true;
 
   for (int i = 0; i < h; ++i){
-    cout << "runclassic for loop 1"<<endl;
+
     for (int j = 0; j < w; ++j){
-      cout << "runclassic loop 2"<<endl;
+
       int r = i;
       int c = j;
 
-      if i != 0
-        numNeighbors += grid[]
+      cout << "r is " << r << " right now" << endl;
+      cout << "c is " << c << " right now" << endl;
+      cout << "current value of matrix is " << grid[i][j] << endl;
+//i is rows, j is columns
+
+        if(i == 0 && j == 0){
+          //top left
+          //check if its upper
+
+          numNeighbors = grid[r][c+1] + grid[r+1][c] + grid[r+1][r+1];
+        }
+        else if (i == 0 && j == w-1){
+          //top right
+
+          numNeighbors = grid[r+1][c] + grid[r][c-1] + grid[r+1][c-1];
+        }
+        else if (i == h-1 && j == 0){
+          //bottom left
+          // this makes it lower
+
+          numNeighbors = grid[r][c+1] + grid[r-1][c] + grid[r-1][c+1];
+
+        }
+        else if (i == h-1 && j == w-1){
+          //bottom right
+
+          numNeighbors = grid[r-1][c] + grid[r][c-1] + grid[r-1][c-1];
+        }
+        else if (j == 0 && i != 0 && i != h-1){
+          //left side
+          //this accounts for sides
+
+          numNeighbors = grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c] + grid[r+1][c+1];
+
+        }
+        else if(j == w-1 && i != 0 && i != h-1){
+          //right side
+
+          numNeighbors = grid[r+1][c] + grid[r+1][c-1] + grid[r][c-1] + grid[r-1][c-1] + grid[r-1][c];
+
+        }
+        else if (j != 0 && i == 0 && j != w-1){
+          //top side
+
+          numNeighbors = grid[r][c-1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1] + grid[r][c+1];
+        }
+        else if (i == h-1 && j != 0 && j != w-1){
+          numNeighbors = grid[r][c-1] + grid[r][c+1] + grid[r-1][c+1] + grid[r-1][c] + grid[r-1][c-1];
+
+        }
+
+        else if(i != 0 && i == h-1 && j != 0 && j != w-1){
+          //middle section
+          numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1]+ grid[r][c-1];
+        }
 
 
-      numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c]
-      + grid[r+1][c-1]+ grid[r][c-1];
+        cout << "neighbors count is " << numNeighbors << endl;
     }
+
   }
+
   int **newGen= new int*[h];
   cout << "neighbors"<<endl;
   for (int i = 0; i < w; i++) {
@@ -90,9 +145,9 @@ void Board:: runClassic(int **grid){
 
   }
 
+//rules of game of life
   for (int i = 0; i < h; ++i){
     for (int j = 0; j < w; ++j){
-
 
        if (numNeighbors == 3){
         if(grid[i][j] == 1){
