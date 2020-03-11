@@ -35,6 +35,7 @@ void UserInput::askConfig()
       //config.getConfig(input);
       board = new Board(height, width, density);
       board -> boardGenerator();
+      
     }
     else
     {
@@ -50,8 +51,7 @@ void UserInput::askBoardType()
   cin >> response;
 
   if(response == "C"){
-    board = new Board();
-    board -> boardGenerator();
+
 
   }
   //run classic here, inherit board

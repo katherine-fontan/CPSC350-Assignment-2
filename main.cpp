@@ -18,7 +18,7 @@ int main (int argc, char** argv)
   UserInput *user = new UserInput();
 
   user -> askConfig();
-  user -> askBoardType();
+  //user -> askBoardType();
 
   cout << "Done" <<endl;
 
