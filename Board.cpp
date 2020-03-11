@@ -240,3 +240,59 @@ void Board:: runDonut(int **grid){
 
 
 }
+
+void Board:: runMirror(int** grid){
+
+  int numNeighbors;
+  int h = height;
+  int w = width;
+
+//iterate throught array to figure out number of neighbors
+  for (int i = 0; i < h; ++i){
+
+    for (int j = 0; j < w; ++j){
+
+
+      int r = i;
+      int c = j;
+
+
+      //if statements to figure out number of neighbors // simiral to classic structure
+
+    }
+  }
+
+
+
+
+//new generator
+
+//rules of game of life // from classic may have to change this
+  for (int i = 0; i < h; ++i){
+    for (int j = 0; j < w; ++j){
+
+       if (numNeighbors == 3){
+        if(grid[i][j] == 1){
+          //newGen[i][j] = 1; // continue to lives on
+        }
+
+        else if(grid[i][j] == 0){
+            //newGen[i][j] = 1; // a new cell is born if its empty
+        }
+      }
+      else if (numNeighbors >= 4 || numNeighbors <=1){ //overcrowded :(
+        //newGen[i][j] = 0;
+      }
+      else if(numNeighbors == 2){ //  a location with 2 neighbors remains stable in the next gen.
+
+        if(grid[i][j] == 1) {// if full it remains full
+          //newGen[i][j] = 1;
+        }
+        else if (grid[i][j] == 0){// if empty remains empty
+          //newGen[i][j] = 0;
+        }
+        //calculate stable count
+      }
+    }
+  }
+}

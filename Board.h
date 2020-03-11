@@ -11,6 +11,7 @@ class Board{
     void runClassic(int** grid);
     void runClassicFile(int** array);
     void runDonut(int** grid);
+    void runMirror(int** grid);
 
     int** array;
 
