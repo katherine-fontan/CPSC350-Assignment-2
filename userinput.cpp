@@ -21,6 +21,7 @@ void UserInput::askConfig()
     if (input == 1)
     {
       getFile(input);
+      askBoardType(fileArray);
     }
     else if (input == 2)
     {
@@ -34,7 +35,10 @@ void UserInput::askConfig()
       cin >> density;
       //config.getConfig(input);
       board = new Board(height, width, density);
-      board->boardGenerator();
+      //board->boardGenerator();
+
+      int** b = board -> boardGenerator();
+      askBoardType(b);
     }
     else
     {
@@ -42,7 +46,7 @@ void UserInput::askConfig()
     }
 }
 
-void UserInput::askBoardType()
+void UserInput::askBoardType(int** someArray)
 {
   char response;
   //gameMode mode;
@@ -53,7 +57,7 @@ void UserInput::askBoardType()
   {
     case 'C': case 'c':
       board = new Board(height, width);
-      board->runClassic(fileArray,height,width);
+      board->runClassic(someArray,height,width);
       break;
     case 'D': case 'd':
       //runDonut(board);

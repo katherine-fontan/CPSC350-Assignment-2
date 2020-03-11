@@ -7,7 +7,7 @@ class Board{
     Board(int height, int width);
     Board(int height, int width, double density);
     ~Board();
-    int boardGenerator();
+    int** boardGenerator();
     void runClassic(int** grid,int height, int width);
     void runClassicFile(int** array);
     void runDonut(int** grid);
@@ -17,6 +17,7 @@ class Board{
 
     int** grid;
     int** newGenArray;
+    
 
     int height;
     int width;

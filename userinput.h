@@ -7,7 +7,7 @@ class UserInput{
     UserInput();
     ~UserInput();
     void askConfig();
-    void askBoardType();
+    void askBoardType(int** someArray);
     void askPauseOption();
     void getFile(int i);
 

@@ -19,7 +19,7 @@ Board:: ~Board(){
 
 }
 
-int Board::boardGenerator(){ /*pass in height, width and density*/
+int** Board::boardGenerator(){ /*pass in height, width and density*/
 
   //initialize height and width and density TEMPORARILY
   int totalCells = height* width;
@@ -56,7 +56,7 @@ int Board::boardGenerator(){ /*pass in height, width and density*/
 
   //runClassic(grid);
 
-   return 0;
+   return grid;
 }
 
 
@@ -65,7 +65,7 @@ void Board::runClassic(int **grid, int height, int width){
   int w = width;
   double d = density;
   int numNeighbors;
-  bool upper = true;
+
 
   for (int i = 0; i < h; ++i){
     for (int j = 0; j < w; ++j){
@@ -178,7 +178,14 @@ void Board::runClassic(int **grid, int height, int width){
       }
     }
   }
+  int** temp = grid;
+  
+  grid = newGen;
+  cout << "let's delete temp" <<endl;
+  delete temp;
+  cout << "lets delete temp"<<endl;
 }
+
 
 
 void Board:: runDonut(int **grid){
