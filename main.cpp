@@ -1,14 +1,12 @@
 #include <iostream>
 #include "userinput.h"
-#include "configuration.h"
-#include "Board.cpp"
 
 using namespace std;
 
 int main (int argc, char** argv)
 {
-  userinput ask;
-  ask.askConfig();
+  //userinput ask;
+  //ask.askConfig();
 
 
 
@@ -17,9 +15,14 @@ int main (int argc, char** argv)
 
   //bool userInput = true;
   //call class of user inputs
-  Board* b = new Board();
-   b -> boardGenerator();
-   cout << b -> grid << endl;
+  UserInput *user = new UserInput();
+
+  user -> askConfig();
+  user -> askBoardType();
+
+  cout << "Done" <<endl;
+
+
 
 
 

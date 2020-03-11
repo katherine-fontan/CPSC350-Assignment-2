@@ -11,7 +11,5 @@ class Board{
 
     int** grid;
     int** newGenArray;
-  
-    //do I need array here?
 
 };
