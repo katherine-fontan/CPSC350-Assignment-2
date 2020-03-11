@@ -29,7 +29,7 @@ void userinput::askBoardType()
   //gameMode mode;
   cout << "Which game mode would you like to play in? \n Classic 'C', Donut 'D' or Mirror 'M' ";
   cin >> response;
-
+  //run classic here, inherit board
   //switch(response)
 }
 

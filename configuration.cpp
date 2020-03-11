@@ -31,10 +31,13 @@ void configuration::getConfig(int i)
 
       //initialize array
       char myArray[line1][line2];
-
+      
       //read through array and print out array contents
       for(int i = 0; i < line1; i++) {
         for(int j = 0; j < line2; j++) {
+          if(myArray)
+
+
           f >> myArray[i][j];
           cout << myArray[i][j];
 

@@ -1,8 +1,7 @@
 #include <iostream>
 #include "userinput.h"
 #include "configuration.h"
-#include "ClassicMode.h"
-#include "Board.h"
+#include "Board.cpp"
 
 using namespace std;
 
@@ -21,6 +20,7 @@ int main (int argc, char** argv)
   Board* b = new Board();
    b -> boardGenerator();
    cout << b -> grid << endl;
+
 
 
  //else if statement for donut

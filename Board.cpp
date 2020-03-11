@@ -126,7 +126,7 @@ void Board:: runClassic(int **grid){
 
         }
 
-        else if(i != 0 && i == h-1 && j != 0 && j != w-1){
+        else if(i != 0 && i != h-1 && j != 0 && j != w-1){
           //middle section
           numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1]+ grid[r][c-1];
         }
