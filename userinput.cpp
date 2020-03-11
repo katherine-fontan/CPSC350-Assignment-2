@@ -24,9 +24,17 @@ void UserInput::askConfig()
     }
     else if (input == 2)
     {
+      cout << "Choose the height: "<<endl;
+      cin>>height;
+
+      cout<< "Choose the width: "<< endl;
+      cin>>width;
+
+      cout << "Choose the population density of the world greater than 0 and less than or equal to 1): " <<endl;
+      cin>>density;
       //config.getConfig(input);
-      //board = new Board();
-      //board -> boardGenerator();
+      board = new Board(height, width, density);
+      board -> boardGenerator();
     }
     else
     {

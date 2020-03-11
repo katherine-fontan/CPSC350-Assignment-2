@@ -6,14 +6,17 @@ using namespace std;
 Board:: Board(){
 
 }
+Board:: Board(int height, int width, double density){
+  this->height = height;
+  this->width = width;
+  this->density = density;
+}
 Board:: ~Board(){
 
 }
 
 int Board::boardGenerator(){ /*pass in height, width and density*/
-  int height = 3;
-  int width = 4;
-  double density = 0.5;
+
   //initialize height and width and density TEMPORARILY
   int totalCells = height* width;
   double populatedCells = totalCells * density;
@@ -61,9 +64,9 @@ void Board:: run(){
 
 void Board:: runClassic(int **grid){
 
-  int h = 3;
-  int w = 4;
-  double density = 0.5;
+  int h = height;
+  int w = width;
+  double d = density;
   int numNeighbors;
   cout << "runclassic"<<endl;
   bool upper = true;

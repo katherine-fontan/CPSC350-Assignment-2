@@ -4,6 +4,7 @@ class Board{
 
   public:
     Board();
+    Board(int height, int width, double density);
     ~Board();
     int boardGenerator();
     void run();
@@ -11,5 +12,9 @@ class Board{
 
     int** grid;
     int** newGenArray;
+
+    int height;
+    int width;
+    double density;
 
 };
