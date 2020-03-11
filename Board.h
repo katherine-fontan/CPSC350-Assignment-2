@@ -10,6 +10,7 @@ class Board{
     void run();
     void runClassic(int** grid);
     void runClassicFile(int** array);
+    void runDonut(int** grid);
 
     int** array;
 
