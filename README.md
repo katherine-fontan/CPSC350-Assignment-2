@@ -23,7 +23,7 @@ GAME MODES THAT WORK:
 -Donut
 
 WHAT WE DIDN'T GET TO:
-The enter key is not integrated in our program nor is the pause button. The stability of the game is a little off. On Classic mode it stabilizes and stops but there might be a double print. For mirror it sometimes works, sometimes it doesn't (for example, I generated a 10x10 board with a density of .5 and stability ended on generation 37 even thought there were still cells that were alive). On donut mode, the stability doesn't work, will stop generating generations even if board still contains multiple cells.
+The enter key is not integrated in our program nor is the pause button. The stability of the game is a little off. On Classic mode it stabilizes and stops but there might be a double print. (for example, I generated a 10x10 board with a density of .5 and stability ended on generation 37 even thought there were still cells that were alive).
 
 Help: Michael(SI) + Sabelle, Matt, and Daniel from the tutoring center also provided some advice on how to understand the game and fix some bumps along the way.
 
