@@ -58,13 +58,19 @@ void UserInput::askBoardType(int** someArray)
   {
     case 'C': case 'c':
       board = new Board(height, width);
-      for (int i = 0; i < 5; ++i)
+      cout<< "Generation 0 "<<endl;
+      board->printBoard(someArray);
+
+
+      for (int i = 1; i < 4; ++i)
       {
-        cout << endl;
         cout << "Generation " << i << endl;
-        board->printBoard(someArray);
-        board->runClassic(someArray,height,width);
-        board->updateBoard(someArray);
+        update = board->runClassic(someArray,height,width);
+        //cout << endl;
+
+        //board->printBoard(someArray);
+
+        someArray = board->updateBoard(update);
       }
       break;
     case 'D': case 'd':

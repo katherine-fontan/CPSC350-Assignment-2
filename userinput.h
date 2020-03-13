@@ -14,6 +14,7 @@ class UserInput{
     Board *board;
 
     int** boardArray = 0;
+    int** update = 0;
 
     int height;
     int width;

@@ -72,7 +72,11 @@ void Board::printBoard(int** grid)
     cout << endl;
     for(int c=0; c <width; c++)
     {
-      cout << grid[r][c];
+      if(grid[r][c] == 0)
+      //cout << grid[r][c];
+        cout<< "-";
+      else if (grid[r][c]==1)
+        cout<<"X";
     }
   } cout << endl;
 }
@@ -83,8 +87,16 @@ int** Board::runClassic(int **grid, int height, int width){
   double d = density;
   int numNeighbors;
 
+  newGen = new int*[height];
+  for (int i = 0; i < height; i++) {
+    // create rows
+    newGen[i] = new int[width];
+  }
+
+
   for (int i = 0; i < h; ++i){
     for (int j = 0; j < w; ++j){
+
       int r = i;
       int c = j;
 
@@ -146,45 +158,32 @@ int** Board::runClassic(int **grid, int height, int width){
           //cout << "IN MIDDLE SECTIONS" << endl;
           numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1]+ grid[r][c-1];
         }
-        //cout << "neighbors count is " << numNeighbors << endl;
+
+
+        if (numNeighbors == 3)
+           newGen[i][j] = 1; // continue to lives on
+
+
+       else if (numNeighbors <=1) //overcrowded :(
+         newGen[i][j] = 0;
+
+       else if(numNeighbors == 2) //  a location with 2 neighbors remains stable in the next gen.
+         newGen[i][j] = grid[i][j];
+         //calculate stable count
+       else
+        newGen[i][j]=0;
+
+
+
+      //cout<<newGen[i][j]<<endl;
     }
 
   }
 
-  newGen = new int*[height];
-  for (int i = 0; i < height; i++) {
-    // create rows
-    newGen[i] = new int[width];
-  }
+printBoard(newGen);
 
-//rules of game of life
-  for (int i = 0; i < h; ++i){
-    for (int j = 0; j < w; ++j){
+return newGen;
 
-       if (numNeighbors == 3){
-        if(grid[i][j] == 1){
-          newGen[i][j] = 1; // continue to lives on
-        }
-
-        else if(grid[i][j] == 0){
-            newGen[i][j] = 1; // a new cell is born if its empty
-        }
-      }
-      else if (numNeighbors >= 4 || numNeighbors <=1){ //overcrowded :(
-        newGen[i][j] = 0;
-      }
-      else if(numNeighbors == 2){ //  a location with 2 neighbors remains stable in the next gen.
-
-        if(grid[i][j] == 1) {// if full it remains full
-          newGen[i][j] = 1;
-        }
-        else if (grid[i][j] == 0){// if empty remains empty
-          newGen[i][j] = 0;
-        }
-        //calculate stable count
-      }
-    }
-  }
 
   //grid = newGen;
   //cout << "before temp delete" <<endl;
