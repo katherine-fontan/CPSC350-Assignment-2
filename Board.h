@@ -12,8 +12,8 @@ class Board{
     void printBoard(int** grid);
     int** updateBoard(int** grid);
 
-    void runDonut(int** grid, int height, int width);
-    void runMirror(int** grid, int height, int width);
+    int** runDonut(int** grid, int height, int width);
+    int** runMirror(int** grid, int height, int width);
 
     int** grid = 0;
     int** newGen = 0;

@@ -64,7 +64,7 @@ void UserInput::askBoardType(int** someArray)
       board->printBoard(someArray);
 
 
-      for (int i = 1; i < 4; ++i)
+      for (int i = 1; i < 30; ++i)
       {
         cout << "Generation " << i << endl;
         update = board->runClassic(someArray, height, width);
@@ -88,17 +88,17 @@ void UserInput::askBoardType(int** someArray)
       break;
     case 'M' : case 'm':
       //runMirror(board);
-      /*board = new Board(height, width);
+      board = new Board(height, width);
       cout<< "Generation 0 "<<endl;
       board->printBoard(someArray);
 
 
-      for (int i = 1; i < 4; ++i)
+      for (int i = 1; i < 30; ++i)
       {
         cout << "Generation " << i << endl;
-        update = board->runMirror(someArray, height, weight);
+        update = board->runMirror(someArray, height, width);
         someArray = board->updateBoard(update);
-      }*/
+      }
 
       break;
   }

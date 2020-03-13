@@ -64,7 +64,7 @@ void Board::printBoard(int** grid)
   for(int r=0; r < height; r++)
   {
     cout << endl;
-    for(int c=0; c <width; c++)
+    for(int c = 0; c < width; c++)
     {
       if(grid[r][c] == 0)
         cout<< "-";
@@ -179,118 +179,108 @@ int** Board::updateBoard(int** grid)
 
 
 
-void Board:: runDonut(int **grid, int height, int width){
-  int numNeighbors;
-  int h = height;
-  int w = width;
-
-//iterate throught array to figure out number of neighbors
-  for (int i = 0; i < h; ++i){
-
-    for (int j = 0; j < w; ++j){
-
-
-      int r = i;
-      int c = j;
-
-
-      //if statements to figure out number of neighbors // similar to classic structure
-
-    }
-  }
-
-
-
-
-//new generator
-
-//rules of game of life // from classic may have to change this
-  for (int i = 0; i < h; ++i){
-    for (int j = 0; j < w; ++j){
-
-       if (numNeighbors == 3){
-        if(grid[i][j] == 1){
-          //newGen[i][j] = 1; // continue to lives on
-        }
-
-        else if(grid[i][j] == 0){
-            //newGen[i][j] = 1; // a new cell is born if its empty
-        }
-      }
-      else if (numNeighbors >= 4 || numNeighbors <=1){ //overcrowded :(
-        //newGen[i][j] = 0;
-      }
-      else if(numNeighbors == 2){ //  a location with 2 neighbors remains stable in the next gen.
-
-        if(grid[i][j] == 1) {// if full it remains full
-          //newGen[i][j] = 1;
-        }
-        else if (grid[i][j] == 0){// if empty remains empty
-          //newGen[i][j] = 0;
-        }
-        //calculate stable count
-      }
-    }
-  }
-
-
+int** Board:: runDonut(int **grid, int height, int width){
 
 
 
 }
 
-void Board:: runMirror(int** grid, int height, int width){
+int** Board:: runMirror(int** grid, int height, int width){
 
-  int numNeighbors;
   int h = height;
   int w = width;
+  int numNeighbors;
 
-//iterate throught array to figure out number of neighbors
+  newGen = new int*[height];
+  for (int i = 0; i < height; i++) {
+    // create rows
+    newGen[i] = new int[width];
+  }
+
+
   for (int i = 0; i < h; ++i){
-
     for (int j = 0; j < w; ++j){
-
 
       int r = i;
       int c = j;
 
+      if(i == 0 && j == 0){
+        //IN UPPER LEFT
+        numNeighbors = 3 * grid[r][c]+ 2*grid[r][c+1] + 2* grid[r+1][c] + grid[r+1][r+1];
+        //3* because its a corner piece and will get automatic 3 more whatever the number in grid[r][c] is
+          //this works best in order to not have if grid[r][c] == 0
+        //2* because side pieces have only 1 additional neighbor
+        //if you dont multiply its because its a middle piece
+      }
+      else if (i == 0 && j == w-1){
+        //IN UPPER RIGHT
 
-      //if statements to figure out number of neighbors // simiral to classic structure
+        numNeighbors = grid[r+1][c] + grid[r][c-1] + grid[r+1][c-1];
+      }
+      else if (i == h-1 && j == 0){
+        //IN BOTTOM LEFT
 
+        numNeighbors = 3* grid[r][c]+ 2*grid[r][c+1] +  2* grid[r-1][c] + grid[r-1][c+1];
+
+      }
+      else if (i == h-1 && j == w-1){
+        //IN BOTTOM RIGHT
+
+        numNeighbors = 3* grid[r][c] + 2*grid[r-1][c] + 2*grid[r][c-1] + grid[r-1][c-1];
+      }
+      else if (j == 0 && i != 0 && i != h-1){
+        //IN LEFT SIDES
+
+        numNeighbors = grid[r][c]+ 2*grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + 2*grid[r+1][c] + grid[r+1][c+1];
+
+      }
+      else if(j == w-1 && i != 0 && i != h-1){
+        //IN RIGHT SIDES
+
+        numNeighbors = grid[r][c]+ 2*grid[r+1][c] + grid[r+1][c-1] + grid[r][c-1] + grid[r-1][c-1] + 2*grid[r-1][c];
+
+      }
+      else if (j != 0 && i == 0 && j != w-1){
+        //IN TOP SIDES
+
+        numNeighbors = grid[r][c]+ 2*grid[r][c-1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1] + 2*grid[r][c+1];
+      }
+      else if (i == h-1 && j != 0 && j != w-1){
+        //IN BOTTOM SIDES
+        numNeighbors = grid[r][c]+ 2*grid[r][c-1] + 2*grid[r][c+1] + grid[r-1][c+1] + grid[r-1][c] + grid[r-1][c-1];
+
+      }
+
+      else if(i != 0 && i != h-1 && j != 0 && j != w-1){
+        //IN MIDDLE SECTIONS SAME AS CLASSIC!!!!
+        numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1]+ grid[r][c-1];
+      }
+
+
+        //populating next generation out next generation
+        if (numNeighbors == 3){
+           newGen[i][j] = 1; // continue to lives on
+
+       }
+       else if (numNeighbors <=1){ //dies of loneliness :(
+         newGen[i][j] = 0;
+
+       }
+       else if(numNeighbors == 2){ //  a location with 2 neighbors remains stable in the next gen.
+         newGen[i][j] = grid[i][j];
+         //calculate stable count
+      }
+       else{
+        newGen[i][j] = 0;//overcrowded
+
+      }
     }
+    cout <<"Number of neighbors " << numNeighbors << endl;
   }
 
+  printBoard(newGen);
 
 
+  return newGen;
 
-//new generator
-
-//rules of game of life // from classic may have to change this
-  for (int i = 0; i < h; ++i){
-    for (int j = 0; j < w; ++j){
-
-       if (numNeighbors == 3){
-        if(grid[i][j] == 1){
-          //newGen[i][j] = 1; // continue to lives on
-        }
-
-        else if(grid[i][j] == 0){
-            //newGen[i][j] = 1; // a new cell is born if its empty
-        }
-      }
-      else if (numNeighbors >= 4 || numNeighbors <=1){ //overcrowded :(
-        //newGen[i][j] = 0;
-      }
-      else if(numNeighbors == 2){ //  a location with 2 neighbors remains stable in the next gen.
-
-        if(grid[i][j] == 1) {// if full it remains full
-          //newGen[i][j] = 1;
-        }
-        else if (grid[i][j] == 0){// if empty remains empty
-          //newGen[i][j] = 0;
-        }
-        //calculate stable count
-      }
-    }
-  }
 }
