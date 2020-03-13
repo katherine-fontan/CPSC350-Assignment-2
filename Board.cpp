@@ -27,9 +27,9 @@ int** Board::boardGenerator(){ /*pass in height, width and density*/
   int popCount = 0;
   //int grid[height][width];
   grid = new int*[height];
-  for (int i = 0; i < width; i++) {
+  for (int i = 0; i < height; i++) {
     // create rows
-    grid[i] = new int[height];
+    grid[i] = new int[width];
   }
 
   for(int r = 0; r < height; ++r){
@@ -151,10 +151,10 @@ int** Board::runClassic(int **grid, int height, int width){
 
   }
 
-  int **newGen = new int*[h];
-  for (int i = 0; i < w; i++) {
+  newGen = new int*[height];
+  for (int i = 0; i < height; i++) {
     // create rows
-    newGen[i] = new int[h];
+    newGen[i] = new int[width];
   }
 
 //rules of game of life
@@ -184,7 +184,7 @@ int** Board::runClassic(int **grid, int height, int width){
         //calculate stable count
       }
     }
-  } 
+  }
 
   //grid = newGen;
   //cout << "before temp delete" <<endl;

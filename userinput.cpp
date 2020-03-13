@@ -41,6 +41,8 @@ void UserInput::askConfig()
     else
     {
       cout << "Invaid input. Try again. " << endl;
+      cout << "\n1 - Specify a flat-file configuration or \n 2 - Generate a random configuration ";
+      cin >> input;
     }
 }
 
@@ -88,7 +90,10 @@ void UserInput::getFile(int i)
 
     if(!f)
     {
+
       cout << "Filename was not found. Try again. " << endl;
+      cout <<"Enter a filename. " << endl;
+      cin >> fileName;
     }
     else
     {

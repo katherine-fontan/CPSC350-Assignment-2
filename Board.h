@@ -15,8 +15,8 @@ class Board{
     void runDonut(int** grid);
     void runMirror(int** grid);
 
-    int** grid;
-    int** newGen;
+    int** grid = 0;
+    int** newGen = 0;
 
 
     int height;

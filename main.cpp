@@ -17,7 +17,7 @@ int main (int argc, char** argv)
 
 
 
-
+  delete user;
 
 
  //else if statement for donut
