@@ -6,7 +6,6 @@ class Board{
     Board();
     Board(int height, int width);
     Board(int height, int width, double density);
-    ~Board();
     int** boardGenerator();
     int** runClassic(int** grid, int height, int width);
     void printBoard(int** grid);
@@ -18,8 +17,8 @@ class Board{
     bool stabilityOfBoard(int** gridOld, int** gridNew, int height, int width);
 
 
-    int** grid = 0;
-    int** newGen = 0;
+    int** grid;
+    int** newGen;
 
 
     int height;

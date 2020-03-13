@@ -4,11 +4,17 @@
 using namespace std;
 
 UserInput:: UserInput(){
+  boardArray = 0;
+  update = 0;
+  height = 0;
+  width = 0;
+  density = 0.0;
 
 }
+
 UserInput:: ~UserInput(){
 
-  /*for (int i = 0; i < height; i++)
+  for (int i = 0; i < height; i++)
     delete[] boardArray[i]; // delete the i-th row
   delete[] boardArray;
 
@@ -16,7 +22,7 @@ UserInput:: ~UserInput(){
     delete[] update[i]; // delete the i-th row
   delete[] update;
 
-  delete board;*/
+  delete board;
 
 }
 
@@ -51,9 +57,7 @@ void UserInput::askConfig()
     }
     else
     {
-      cout << "Invaid input. Try again. " << endl;
-      cout << "\n1 - Specify a flat-file configuration or \n 2 - Generate a random configuration " << endl;
-      cin >> input;
+      cout << "Invaid input. " << endl;
     }
 }
 
@@ -70,11 +74,11 @@ void UserInput::askBoardType(int** someArray)
 //switch statement to figure out which board type the user answered and based on that a new board object is created and and the other functions from board.cpp are called
   switch(response)
   {
+    //classic mode case
     case 'C': case 'c':
       board = new Board(height, width);
       cout<< "Generation 0 "<<endl;
       board->printBoard(someArray);
-
 
       while(stable == false){
 
@@ -94,21 +98,13 @@ void UserInput::askBoardType(int** someArray)
           generation++;
       }
 
-
       break;
+    //donut mode case
     case 'D': case 'd':
       //runDonut(board);
       board = new Board(height, width);
       cout<< "Generation 0 "<<endl;
       board->printBoard(someArray);
-
-
-      /*for (int i = 1; i < 4; ++i)
-      {
-        cout << "Generation " << i << endl;
-        update = board->runDonut(someArray, height, width);
-        someArray = board->updateBoard(update);
-      }*/
 
       while(stable == false){
 
@@ -126,10 +122,11 @@ void UserInput::askBoardType(int** someArray)
             stable = false;
           }
           generation++;
-          //stable = false;
+          stable = false;
       }
 
       break;
+    //mirror mode case
     case 'M' : case 'm':
       //runMirror(board);
       board = new Board(height, width);
@@ -152,25 +149,26 @@ void UserInput::askBoardType(int** someArray)
             stable = false;
           }
           generation++;
-          //stable = false;
+          stable = false;
       }
       break;
   }
 }
 
+//function that reads in a file and turns contents into an array
 void UserInput::getFile(int i)
 {
   while(i == 1)
   {
     string fileName;
-    ifstream f;
+    ifstream fileStream;
     string line;
     cout <<"Enter a filename. " << endl;
     cin >> fileName;
 
-    f.open(fileName);
+    fileStream.open(fileName);
 
-    if(!f)
+    if(!fileStream)
     {
 
       cout << "Filename was not found. Try again. " << endl;
@@ -180,10 +178,10 @@ void UserInput::getFile(int i)
     else
     {
       //reads first line and makes into row dimension
-      getline(f, line);
+      getline(fileStream, line);
       height = stoi(line);
       //reads second line an makes into column dimension
-      getline(f, line);
+      getline(fileStream, line);
       width = stoi(line);
 
       //int boardArray[line1][line2];
@@ -198,7 +196,7 @@ void UserInput::getFile(int i)
       //read through array and print out array contents
       for(int i = 0; i < height; i++) {
         for(int j = 0; j < width; j++) {
-          f >> myArray[i][j];
+          fileStream >> myArray[i][j];
           if (myArray[i][j] == 'X')
           {
             boardArray[i][j] = 1;
@@ -211,7 +209,7 @@ void UserInput::getFile(int i)
         }
 
       }
-      f.close();
+      fileStream.close();
       }
       i = 0;
     }

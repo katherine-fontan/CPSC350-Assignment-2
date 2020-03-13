@@ -15,7 +15,7 @@ luzfonta@chapman.edu
 
 //This program runs the game of life module giving the user a choice of input and output styles and modes
 
-This program was coded in collaboration between Katherine and Krystal, both agree that we had equal participation as we met outside of classroom to work on it. The commits may not reflect an accurate representation of each person's contributions as we sometimes worked on it together while using one computer or facetiming.  
+This program was coded in collaboration between Katherine and Krystal, both agree that we had equal participation as we met outside of classroom to work on it. The commits may not reflect an accurate representation of each person's contributions as we sometimes worked on it together while using one computer or facetiming.
 
 GAME MODES THAT WORK:
 -Classic

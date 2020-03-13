@@ -1,31 +1,26 @@
 #include "Board.h"
 #include <iostream>
-
 using namespace std;
 
 Board:: Board(){
-
+  grid = 0;
+  newGen = 0;
+  height = 0;
+  width = 0;
+  density = 0.0;
 }
+
 Board:: Board(int height, int width){
   this->height = height;
   this->width = width;
 }
+
 Board:: Board(int height, int width, double density){
   this->height = height;
   this->width = width;
   this->density = density;
 }
-Board:: ~Board(){
-  /*for (int i = 0; i < height; i++)
-    delete[] newGen[i];
-  delete[] newGen;
 
-  for (int i = 0; i < height; i++)
-    delete[] grid[i];
-  delete[] grid;*/
-
-
-}
 
 int** Board::boardGenerator(){
 
