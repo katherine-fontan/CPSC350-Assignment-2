@@ -73,7 +73,7 @@ void UserInput::askBoardType(int** someArray)
       break;
     case 'D': case 'd':
       //runDonut(board);
-      /*board = new Board(height, width);
+      board = new Board(height, width);
       cout<< "Generation 0 "<<endl;
       board->printBoard(someArray);
 
@@ -83,7 +83,7 @@ void UserInput::askBoardType(int** someArray)
         cout << "Generation " << i << endl;
         update = board->runDonut(someArray, height, weight);
         someArray = board->updateBoard(update);
-      }*/
+      }
 
       break;
     case 'M' : case 'm':
