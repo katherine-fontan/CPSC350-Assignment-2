@@ -110,8 +110,6 @@ void UserInput::askBoardType(int** someArray)
         someArray = board->updateBoard(update);
       }
 
-
-      /*
       while(stable == false){
 
           cout << "Generation " << generation << endl;
@@ -130,7 +128,6 @@ void UserInput::askBoardType(int** someArray)
           generation++;
           stable = false;
       }
-      */
 
       break;
     case 'M' : case 'm':

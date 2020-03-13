@@ -254,24 +254,21 @@ int** Board:: runDonut(int **grid, int height, int width){
         }
         else if (j == 0 && i != 0 && i != h-1){
           //IN LEFT SIDES
-
-          numNeighbors = grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c] + grid[r+1][c+1];
+          numNeighbors = grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c] + grid[r+1][c+1] + grid[r-1][c+(width-1)] + grid[r+1][c+(width-1)] + grid[r][c+(width-1)];
 
         }
         else if(j == w-1 && i != 0 && i != h-1){
           //IN RIGHT SIDES
-
-          numNeighbors = grid[r+1][c] + grid[r+1][c-1] + grid[r][c-1] + grid[r-1][c-1] + grid[r-1][c];
+          numNeighbors = grid[r+1][c] + grid[r+1][c-1] + grid[r][c-1] + grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c-(width-1)] + grid[r+1][c-(width-1)] + grid[r][c-(width-1)];;
 
         }
         else if (j != 0 && i == 0 && j != w-1){
           //IN TOP SIDES
-
-          numNeighbors = grid[r][c-1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1] + grid[r][c+1];
+          numNeighbors = grid[r][c-1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1] + grid[r][c+1] + grid[r+(height-1)][c-1] + grid[r+(height-1)][c+1] + grid[r+(height-1)][c];
         }
         else if (i == h-1 && j != 0 && j != w-1){
           //IN BOTTOM SIDES
-          numNeighbors = grid[r][c-1] + grid[r][c+1] + grid[r-1][c+1] + grid[r-1][c] + grid[r-1][c-1];
+          numNeighbors = grid[r][c-1] + grid[r][c+1] + grid[r-1][c+1] + grid[r-1][c] + grid[r-1][c-1] + grid[r-(height-1)][c-1] + grid[r-(height-1)][c+1] + grid[r-(height-1)][c];
 
         }
 
@@ -295,12 +292,9 @@ int** Board:: runDonut(int **grid, int height, int width){
         newGen[i][j]=0;//overcrowded
 
     }
-
   }
 
-
 printBoard(newGen);
-
 
 return newGen;
 
