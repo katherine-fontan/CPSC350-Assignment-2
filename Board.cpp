@@ -199,7 +199,7 @@ bool Board:: stabilityOfBoard(int** gridOld, int** gridNew, int height, int widt
       }
     }
  }
-  
+
   if(stableCount == 0){
     return true;
   }
@@ -216,10 +216,97 @@ bool Board:: stabilityOfBoard(int** gridOld, int** gridNew, int height, int widt
 
 
 int** Board:: runDonut(int **grid, int height, int width){
+  int h = height;
+  int w = width;
+  int numNeighbors;
+  int stableCount = 0;
 
 
+  newGen = new int*[height];
+  for (int i = 0; i < height; i++) {
+    // create rows
+    newGen[i] = new int[width];
+  }
+
+
+  for (int i = 0; i < height; ++i){
+    for (int j = 0; j < width; ++j){
+
+      int r = i;
+      int c = j;
+
+        if(i == 0 && j == 0){
+          //IN UPPER LEFT
+          numNeighbors = grid[r][c+1] + grid[r+1][c] + grid[r+1][r+1] + grid[r+(height-1)][c] + grid[r+(height-1)][c+1] + grid[r+(height-1)][c+(width-1)] + grid[r][c+(width-1)] +grid[r+1][c+(width-1)];
+        }
+        else if (i == 0 && j == w-1){
+          //IN UPPER RIGHT
+          numNeighbors = grid[r+1][c] + grid[r][c-1] + grid[r+1][c-1] + grid[r+(height-1)][c] + grid[r+(height-1)][c-1] + grid[r+(height-1)][c-(width-1)] + grid[r][c-(width-1)] +grid[r+1][c-(width-1)];
+        }
+        else if (i == h-1 && j == 0){
+          //IN BOTTOM LEFT
+          numNeighbors = grid[r][c+1] + grid[r-1][c] + grid[r-1][c+1] + grid[r-(height-1)][c] + grid[r-(height-1)][c+1] + grid[r-(height-1)][c+(width-1)] + grid[r][c+(width-1)] +grid[r-1][c+(width-1)];
+
+        }
+        else if (i == h-1 && j == w-1){
+          //IN BOTTOM RIGHT
+          numNeighbors = grid[r-1][c] + grid[r][c-1] + grid[r-1][c-1] + grid[r-(height-1)][c] + grid[r-(height-1)][c-1] + grid[r-(height-1)][c-(width-1)] + grid[r][c-(width-1)] +grid[r-1][c-(width-1)];
+        }
+        else if (j == 0 && i != 0 && i != h-1){
+          //IN LEFT SIDES
+
+          numNeighbors = grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c] + grid[r+1][c+1];
+
+        }
+        else if(j == w-1 && i != 0 && i != h-1){
+          //IN RIGHT SIDES
+
+          numNeighbors = grid[r+1][c] + grid[r+1][c-1] + grid[r][c-1] + grid[r-1][c-1] + grid[r-1][c];
+
+        }
+        else if (j != 0 && i == 0 && j != w-1){
+          //IN TOP SIDES
+
+          numNeighbors = grid[r][c-1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1] + grid[r][c+1];
+        }
+        else if (i == h-1 && j != 0 && j != w-1){
+          //IN BOTTOM SIDES
+          numNeighbors = grid[r][c-1] + grid[r][c+1] + grid[r-1][c+1] + grid[r-1][c] + grid[r-1][c-1];
+
+        }
+
+        else if(i != 0 && i != h-1 && j != 0 && j != w-1){
+          //IN MIDDLE SECTIONS
+          numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1]+ grid[r][c-1];
+        }
+
+
+        if (numNeighbors == 3)
+           newGen[i][j] = 1; // continue to lives on
+
+
+       else if (numNeighbors <=1) //dies of loneliness :(
+         newGen[i][j] = 0;
+
+       else if(numNeighbors == 2) //  a location with 2 neighbors remains stable in the next gen.
+         newGen[i][j] = grid[i][j];
+         //calculate stable count
+       else
+        newGen[i][j]=0;//overcrowded
+
+    }
+
+  }
+
+
+printBoard(newGen);
+
+
+return newGen;
 
 }
+
+
 
 int** Board:: runMirror(int** grid, int height, int width){
 
