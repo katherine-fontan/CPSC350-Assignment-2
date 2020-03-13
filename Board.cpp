@@ -19,13 +19,13 @@ Board:: ~Board(){
 
 }
 
-int** Board::boardGenerator(){ /*pass in height, width and density*/
+int** Board::boardGenerator(){
 
-  //initialize height and width and density TEMPORARILY
+  //initialize height and width and density
   int totalCells = height* width;
   double populatedCells = totalCells * density;
   int popCount = 0;
-  //int grid[height][width];
+
   grid = new int*[height];
   for (int i = 0; i < height; i++) {
     // create rows
@@ -33,30 +33,24 @@ int** Board::boardGenerator(){ /*pass in height, width and density*/
   }
 
   for(int r = 0; r < height; ++r){
-    //cout << "first loop" << endl;
+
     for (int c = 0; c < width; ++c){
-      //cout << "second loop" << endl;
+
       double randNum = ((double) rand() /(RAND_MAX + 1.0));
-      //cout << "afrer randnum assign" << endl;
+
       if(0 < randNum && randNum <= density){
-        //cout << "after first if" << endl;
+
         grid[r][c] = 1;
         ++popCount;
       }
       else {
-        //cout << "in else" << endl;
         grid[r][c] = 0;
-        //cout << "second in else" << endl;
       }
 
-      //cout << "after else" << endl;
 
-      //when grid is filled break
       if(popCount == populatedCells){
-        //cout << "in if pop" << endl;
         break;
       }
-      //cout << "after if pop" << endl;
       cout << grid[r][c];
     }
     cout << endl;
@@ -73,7 +67,6 @@ void Board::printBoard(int** grid)
     for(int c=0; c <width; c++)
     {
       if(grid[r][c] == 0)
-      //cout << grid[r][c];
         cout<< "-";
       else if (grid[r][c]==1)
         cout<<"X";
@@ -84,7 +77,6 @@ void Board::printBoard(int** grid)
 int** Board::runClassic(int **grid, int height, int width){
   int h = height;
   int w = width;
-  double d = density;
   int numNeighbors;
 
   newGen = new int*[height];
@@ -101,61 +93,50 @@ int** Board::runClassic(int **grid, int height, int width){
       int c = j;
 
         if(i == 0 && j == 0){
-          //top left
-          //check if its upper
-          //cout << "IN UPPER LEFT" << endl;
+          //IN UPPER LEFT
           numNeighbors = grid[r][c+1] + grid[r+1][c] + grid[r+1][r+1];
         }
         else if (i == 0 && j == w-1){
-          //top right
-          //cout << "IN UPPER RIGHT" << endl;
+          //IN UPPER RIGHT
 
           numNeighbors = grid[r+1][c] + grid[r][c-1] + grid[r+1][c-1];
         }
         else if (i == h-1 && j == 0){
-          //bottom left
-          // this makes it lower
-          //cout << "IN BOTTOM LEFT" << endl;
+          //IN BOTTOM LEFT
 
           numNeighbors = grid[r][c+1] + grid[r-1][c] + grid[r-1][c+1];
 
         }
         else if (i == h-1 && j == w-1){
-          //bottom right
-          //cout << "IN BOTTOM RIGHT" << endl;
+          //IN BOTTOM RIGHT
 
           numNeighbors = grid[r-1][c] + grid[r][c-1] + grid[r-1][c-1];
         }
         else if (j == 0 && i != 0 && i != h-1){
-          //left side
-          //this accounts for sides
-          //cout << "IN LEFT SIDES" << endl;
+          //IN LEFT SIDES
 
           numNeighbors = grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c] + grid[r+1][c+1];
 
         }
         else if(j == w-1 && i != 0 && i != h-1){
-          //right side
-          //cout << "IN RIGHT SIDES" << endl;
+          //IN RIGHT SIDES
 
           numNeighbors = grid[r+1][c] + grid[r+1][c-1] + grid[r][c-1] + grid[r-1][c-1] + grid[r-1][c];
 
         }
         else if (j != 0 && i == 0 && j != w-1){
-          //top side
-          //cout << "IN TOP SIDES" << endl;
+          //IN TOP SIDES
 
           numNeighbors = grid[r][c-1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1] + grid[r][c+1];
         }
         else if (i == h-1 && j != 0 && j != w-1){
-          //cout << "IN BOTTOM SIDES" << endl;
+          //IN BOTTOM SIDES
           numNeighbors = grid[r][c-1] + grid[r][c+1] + grid[r-1][c+1] + grid[r-1][c] + grid[r-1][c-1];
 
         }
 
         else if(i != 0 && i != h-1 && j != 0 && j != w-1){
-          //middle section
-          //cout << "IN MIDDLE SECTIONS" << endl;
+          //IN MIDDLE SECTIONS
           numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1]+ grid[r][c-1];
         }
 
@@ -164,18 +145,15 @@ int** Board::runClassic(int **grid, int height, int width){
            newGen[i][j] = 1; // continue to lives on
 
 
-       else if (numNeighbors <=1) //overcrowded :(
+       else if (numNeighbors <=1) //dies of loneliness :(
          newGen[i][j] = 0;
 
        else if(numNeighbors == 2) //  a location with 2 neighbors remains stable in the next gen.
          newGen[i][j] = grid[i][j];
          //calculate stable count
        else
-        newGen[i][j]=0;
+        newGen[i][j]=0;//overcrowded
 
-
-
-      //cout<<newGen[i][j]<<endl;
     }
 
   }
@@ -184,11 +162,6 @@ printBoard(newGen);
 
 return newGen;
 
-
-  //grid = newGen;
-  //cout << "before temp delete" <<endl;
-//delete temp;
-  //cout << "temp is deleted"<<endl;
 }
 
 int** Board::updateBoard(int** grid)
@@ -201,12 +174,12 @@ int** Board::updateBoard(int** grid)
   } return grid;
 }
 
-//make a current and next class printing out and copy from one another
 
 
 
 
-void Board:: runDonut(int **grid){
+
+void Board:: runDonut(int **grid, int height, int width){
   int numNeighbors;
   int h = height;
   int w = width;
@@ -266,7 +239,7 @@ void Board:: runDonut(int **grid){
 
 }
 
-void Board:: runMirror(int** grid){
+void Board:: runMirror(int** grid, int height, int width){
 
   int numNeighbors;
   int h = height;

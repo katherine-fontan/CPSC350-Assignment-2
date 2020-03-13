@@ -8,12 +8,12 @@ class Board{
     Board(int height, int width, double density);
     ~Board();
     int** boardGenerator();
-    int** runClassic(int** grid,int height, int width);
+    int** runClassic(int** grid, int height, int width);
     void printBoard(int** grid);
     int** updateBoard(int** grid);
 
-    void runDonut(int** grid);
-    void runMirror(int** grid);
+    void runDonut(int** grid, int height, int width);
+    void runMirror(int** grid, int height, int width);
 
     int** grid = 0;
     int** newGen = 0;

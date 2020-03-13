@@ -13,6 +13,7 @@ UserInput:: ~UserInput(){
 
 void UserInput::askConfig()
 {
+  //function to ask what type of configuration they want file or random generator
     int input;
     cout << "Would you like to: \n 1 - Specify a flat-file configuration or \n 2 - Generate a random configuration ";
     cin >> input;
@@ -20,7 +21,7 @@ void UserInput::askConfig()
     if (input == 1)
     {
       getFile(input);
-      askBoardType(boardArray);
+      askBoardType(boardArray); //ask what type of board
     }
     else if (input == 2)
     {
@@ -35,8 +36,8 @@ void UserInput::askConfig()
       cin >> density;
 
       board = new Board(height, width, density);
-      boardArray = board->boardGenerator();
-      askBoardType(boardArray);
+      boardArray = board->boardGenerator(); // generates a random board
+      askBoardType(boardArray); //pass in ask board type
     }
     else
     {
@@ -54,6 +55,7 @@ void UserInput::askBoardType(int** someArray)
   cout << "Which game mode would you like to play in? \n Classic 'C', Donut 'D' or Mirror 'M' " << endl;
   cin >> response;
 
+//switch statement to figure out which board type the user answered and based on that a new board object is created and and the other functions from board.cpp are called
   switch(response)
   {
     case 'C': case 'c':
@@ -65,19 +67,39 @@ void UserInput::askBoardType(int** someArray)
       for (int i = 1; i < 4; ++i)
       {
         cout << "Generation " << i << endl;
-        update = board->runClassic(someArray,height,width);
-        //cout << endl;
-
-        //board->printBoard(someArray);
-
+        update = board->runClassic(someArray, height, width);
         someArray = board->updateBoard(update);
       }
       break;
     case 'D': case 'd':
       //runDonut(board);
+      /*board = new Board(height, width);
+      cout<< "Generation 0 "<<endl;
+      board->printBoard(someArray);
+
+
+      for (int i = 1; i < 4; ++i)
+      {
+        cout << "Generation " << i << endl;
+        update = board->runDonut(someArray, height, weight);
+        someArray = board->updateBoard(update);
+      }*/
+
       break;
     case 'M' : case 'm':
       //runMirror(board);
+      /*board = new Board(height, width);
+      cout<< "Generation 0 "<<endl;
+      board->printBoard(someArray);
+
+
+      for (int i = 1; i < 4; ++i)
+      {
+        cout << "Generation " << i << endl;
+        update = board->runMirror(someArray, height, weight);
+        someArray = board->updateBoard(update);
+      }*/
+
       break;
   }
 }
@@ -131,16 +153,12 @@ void UserInput::getFile(int i)
           {
             boardArray[i][j] = 0;
           }
-          //cout << boardArray[i][j];
+
         }
-        //cout << endl;
+
       }
       f.close();
       }
       i = 0;
     }
   }
-
-//two copies-- previous and current of next gen and current gen
-// object with pointers curr and next to keep track of successive generations
-// then compare two generations with one another- draw/map out
