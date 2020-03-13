@@ -16,6 +16,14 @@ Board:: Board(int height, int width, double density){
   this->density = density;
 }
 Board:: ~Board(){
+  /*for (int i = 0; i < height; i++)
+    delete[] newGen[i];
+  delete[] newGen;
+
+  for (int i = 0; i < height; i++)
+    delete[] grid[i];
+  delete[] grid;*/
+
 
 }
 
@@ -78,6 +86,8 @@ int** Board::runClassic(int **grid, int height, int width){
   int h = height;
   int w = width;
   int numNeighbors;
+  int stableCount = 0;
+
 
   newGen = new int*[height];
   for (int i = 0; i < height; i++) {
@@ -158,7 +168,9 @@ int** Board::runClassic(int **grid, int height, int width){
 
   }
 
+
 printBoard(newGen);
+
 
 return newGen;
 
@@ -175,8 +187,32 @@ int** Board::updateBoard(int** grid)
 }
 
 
+bool Board:: stabilityOfBoard(int** gridOld, int** gridNew, int height, int width){
+  int stableCount=0;
+  int zeroCount = height*width;
+  for(int i = 0; i < height; ++i){
+    for(int j = 0; j < width; ++j){
+
+      if(gridOld[i][j] != gridNew[i][j]){
+        stableCount++;
+
+      }
+    }
+ }
+  
+  if(stableCount == 0){
+    return true;
+  }
+
+  else if(stableCount > 0){
+    return false;
+  }
+  else{
+    return false;
+  }
 
 
+}
 
 
 int** Board:: runDonut(int **grid, int height, int width){
@@ -190,6 +226,8 @@ int** Board:: runMirror(int** grid, int height, int width){
   int h = height;
   int w = width;
   int numNeighbors;
+  int stableCount = 0;
+  bool stability = false;
 
   newGen = new int*[height];
   for (int i = 0; i < height; i++) {
@@ -206,7 +244,7 @@ int** Board:: runMirror(int** grid, int height, int width){
 
       if(i == 0 && j == 0){
         //IN UPPER LEFT
-        numNeighbors = 3 * grid[r][c]+ 2*grid[r][c+1] + 2* grid[r+1][c] + grid[r+1][r+1];
+        numNeighbors = 3 * grid[r][c]+ 2*grid[r][c+1] + 2* grid[r+1][c] + grid[r+1][c+1];
         //3* because its a corner piece and will get automatic 3 more whatever the number in grid[r][c] is
           //this works best in order to not have if grid[r][c] == 0
         //2* because side pieces have only 1 additional neighbor
@@ -215,7 +253,7 @@ int** Board:: runMirror(int** grid, int height, int width){
       else if (i == 0 && j == w-1){
         //IN UPPER RIGHT
 
-        numNeighbors = grid[r+1][c] + grid[r][c-1] + grid[r+1][c-1];
+        numNeighbors = 3* grid[r][c]+ 2*grid[r+1][c] + 2*grid[r][c-1] + grid[r+1][c-1];
       }
       else if (i == h-1 && j == 0){
         //IN BOTTOM LEFT
@@ -274,8 +312,13 @@ int** Board:: runMirror(int** grid, int height, int width){
         newGen[i][j] = 0;//overcrowded
 
       }
+      if(grid[i][j] != newGen[i][j]){
+        stableCount++;
+
+
+      }
     }
-    cout <<"Number of neighbors " << numNeighbors << endl;
+
   }
 
   printBoard(newGen);

@@ -15,6 +15,9 @@ class Board{
     int** runDonut(int** grid, int height, int width);
     int** runMirror(int** grid, int height, int width);
 
+    bool stabilityOfBoard(int** gridOld, int** gridNew, int height, int width);
+
+
     int** grid = 0;
     int** newGen = 0;
 
@@ -22,5 +25,6 @@ class Board{
     int height;
     int width;
     double density;
+
 
 };

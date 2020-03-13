@@ -8,6 +8,16 @@ UserInput:: UserInput(){
 }
 UserInput:: ~UserInput(){
 
+  /*for (int i = 0; i < height; i++)
+    delete[] boardArray[i]; // delete the i-th row
+  delete[] boardArray;
+
+  for (int i = 0; i < height; i++)
+    delete[] update[i]; // delete the i-th row
+  delete[] update;
+
+  delete board;*/
+
 }
 
 
@@ -50,6 +60,8 @@ void UserInput::askConfig()
 
 void UserInput::askBoardType(int** someArray)
 {
+  int generation = 1;
+  bool stable = false;
   char response;
   //gameMode mode;
   cout << "Which game mode would you like to play in? \n Classic 'C', Donut 'D' or Mirror 'M' " << endl;
@@ -64,12 +76,25 @@ void UserInput::askBoardType(int** someArray)
       board->printBoard(someArray);
 
 
-      for (int i = 1; i < 30; ++i)
-      {
-        cout << "Generation " << i << endl;
-        update = board->runClassic(someArray, height, width);
-        someArray = board->updateBoard(update);
+      while(stable == false){
+
+          cout << "Generation " << generation << endl;
+          update = board->runClassic(someArray, height, width);
+          stable = board-> stabilityOfBoard(someArray, update, height, width);
+          someArray = board->updateBoard(update);
+
+          if(stable == true){
+
+            cout << "Your board is stable... bye" << endl;
+            break;
+          }
+          else{
+            stable = false;
+          }
+          generation++;
       }
+
+
       break;
     case 'D': case 'd':
       //runDonut(board);
@@ -81,9 +106,31 @@ void UserInput::askBoardType(int** someArray)
       for (int i = 1; i < 4; ++i)
       {
         cout << "Generation " << i << endl;
-        update = board->runDonut(someArray, height, weight);
+        update = board->runDonut(someArray, height, width);
         someArray = board->updateBoard(update);
       }
+
+
+      /*
+      while(stable == false){
+
+          cout << "Generation " << generation << endl;
+          update = board->runDonut(someArray, height, width);
+
+          stable = board-> stabilityOfBoard(someArray, update, height, width);
+          someArray = board->updateBoard(update);
+
+          if(stable == true){
+            cout << "Your board is stable... bye" << endl;
+            break;
+          }
+          else{
+            stable = false;
+          }
+          generation++;
+          stable = false;
+      }
+      */
 
       break;
     case 'M' : case 'm':
@@ -92,14 +139,24 @@ void UserInput::askBoardType(int** someArray)
       cout<< "Generation 0 "<<endl;
       board->printBoard(someArray);
 
+      while(stable == false){
 
-      for (int i = 1; i < 30; ++i)
-      {
-        cout << "Generation " << i << endl;
-        update = board->runMirror(someArray, height, width);
-        someArray = board->updateBoard(update);
+          cout << "Generation " << generation << endl;
+          update = board->runMirror(someArray, height, width);
+
+          stable = board-> stabilityOfBoard(someArray, update, height, width);
+          someArray = board->updateBoard(update);
+
+          if(stable == true){
+            cout << "Your board is stable... bye" << endl;
+            break;
+          }
+          else{
+            stable = false;
+          }
+          generation++;
+          stable = false;
       }
-
       break;
   }
 }
@@ -120,8 +177,8 @@ void UserInput::getFile(int i)
     {
 
       cout << "Filename was not found. Try again. " << endl;
-      cout <<"Enter a filename. " << endl;
-      cin >> fileName;
+
+      continue;
     }
     else
     {
