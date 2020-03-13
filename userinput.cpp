@@ -52,7 +52,7 @@ void UserInput::askConfig()
     else
     {
       cout << "Invaid input. Try again. " << endl;
-      cout << "\n1 - Specify a flat-file configuration or \n 2 - Generate a random configuration ";
+      cout << "\n1 - Specify a flat-file configuration or \n 2 - Generate a random configuration " << endl;
       cin >> input;
     }
 }
@@ -103,12 +103,12 @@ void UserInput::askBoardType(int** someArray)
       board->printBoard(someArray);
 
 
-      for (int i = 1; i < 4; ++i)
+      /*for (int i = 1; i < 4; ++i)
       {
         cout << "Generation " << i << endl;
         update = board->runDonut(someArray, height, width);
         someArray = board->updateBoard(update);
-      }
+      }*/
 
       while(stable == false){
 
@@ -126,7 +126,7 @@ void UserInput::askBoardType(int** someArray)
             stable = false;
           }
           generation++;
-          stable = false;
+          //stable = false;
       }
 
       break;
@@ -152,7 +152,7 @@ void UserInput::askBoardType(int** someArray)
             stable = false;
           }
           generation++;
-          stable = false;
+          //stable = false;
       }
       break;
   }

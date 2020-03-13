@@ -55,13 +55,11 @@ int** Board::boardGenerator(){
         grid[r][c] = 0;
       }
 
-
       if(popCount == populatedCells){
         break;
       }
-      cout << grid[r][c];
+
     }
-    cout << endl;
   }
   return grid;
 
@@ -163,18 +161,15 @@ int** Board::runClassic(int **grid, int height, int width){
          //calculate stable count
        else
         newGen[i][j]=0;//overcrowded
-
     }
-
   }
 
-
 printBoard(newGen);
-
 
 return newGen;
 
 }
+
 
 int** Board::updateBoard(int** grid)
 {
@@ -210,7 +205,6 @@ bool Board:: stabilityOfBoard(int** gridOld, int** gridNew, int height, int widt
   else{
     return false;
   }
-
 
 }
 
@@ -325,51 +319,40 @@ int** Board:: runMirror(int** grid, int height, int width){
 
       if(i == 0 && j == 0){
         //IN UPPER LEFT
-        numNeighbors = 3 * grid[r][c]+ 2*grid[r][c+1] + 2* grid[r+1][c] + grid[r+1][c+1];
-        //3* because its a corner piece and will get automatic 3 more whatever the number in grid[r][c] is
-          //this works best in order to not have if grid[r][c] == 0
-        //2* because side pieces have only 1 additional neighbor
-        //if you dont multiply its because its a middle piece
+        numNeighbors = grid[r+1][c+1] + grid[r][c+1] + grid[r+1][c] + grid[r+(h-1)][c] + grid[r+(h-1)][c+1] + grid[r+1][c+1] + grid[r+1][c+(w-1)] + grid[r][c+(2-1)];
       }
       else if (i == 0 && j == w-1){
         //IN UPPER RIGHT
-
-        numNeighbors = 3* grid[r][c]+ 2*grid[r+1][c] + 2*grid[r][c-1] + grid[r+1][c-1];
+        numNeighbors = grid[r+1][c] + grid[r][c-1] + grid[r+1][c-1] + grid[r+(h-1)][c] + grid[r+(h-1)][c-1] + grid[r+1][c-1] + grid[r+1][c-(w-1)] + grid[r][c-(w-1)];
       }
       else if (i == h-1 && j == 0){
         //IN BOTTOM LEFT
-
-        numNeighbors = 3* grid[r][c]+ 2*grid[r][c+1] +  2* grid[r-1][c] + grid[r-1][c+1];
+        numNeighbors = grid[r][c+1] + grid[r-1][c] + grid[r-1][c+1] + grid[r-(h-1)][c] + grid[r-(h-1)][c+1] + grid[r-1][c] + grid[r-1][c+(w-1)] + grid[r][c+(w-1)];
 
       }
       else if (i == h-1 && j == w-1){
         //IN BOTTOM RIGHT
-
-        numNeighbors = 3* grid[r][c] + 2*grid[r-1][c] + 2*grid[r][c-1] + grid[r-1][c-1];
+        numNeighbors = grid[r-1][c] + grid[r][c-1] + grid[r-1][c-1] + grid[r-(h-1)][c] + grid[r-(h-1)][c-1] + grid[r-1][c-1] + grid[r-1][c-(w-1)] + grid[r][c-(w-1)];
       }
       else if (j == 0 && i != 0 && i != h-1){
         //IN LEFT SIDES
-
-        numNeighbors = grid[r][c]+ 2*grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + 2*grid[r+1][c] + grid[r+1][c+1];
+        numNeighbors = grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c] + grid[r+1][c+1] + grid[r-1][c+(w-1)] + grid[r+1][c+(w-1)] + grid[r][c+(w-1)];
 
       }
       else if(j == w-1 && i != 0 && i != h-1){
         //IN RIGHT SIDES
-
-        numNeighbors = grid[r][c]+ 2*grid[r+1][c] + grid[r+1][c-1] + grid[r][c-1] + grid[r-1][c-1] + 2*grid[r-1][c];
+        numNeighbors = grid[r+1][c] + grid[r+1][c-1] + grid[r][c-1] + grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c-(w-1)] + grid[r+1][c-(w-1)] + grid[r][c-(w-1)];
 
       }
       else if (j != 0 && i == 0 && j != w-1){
         //IN TOP SIDES
-
-        numNeighbors = grid[r][c]+ 2*grid[r][c-1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1] + 2*grid[r][c+1];
+        numNeighbors = grid[r][c-1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1] + grid[r][c+1] + grid[r+(h-1)][c-1] + grid[r+(h-1)][c+1] + grid[r+(h-1)][c];
       }
       else if (i == h-1 && j != 0 && j != w-1){
         //IN BOTTOM SIDES
-        numNeighbors = grid[r][c]+ 2*grid[r][c-1] + 2*grid[r][c+1] + grid[r-1][c+1] + grid[r-1][c] + grid[r-1][c-1];
+        numNeighbors = grid[r][c-1] + grid[r][c+1] + grid[r-1][c+1] + grid[r-1][c] + grid[r-1][c-1] + grid[r-(h-1)][c-1] + grid[r-(h-1)][c+1] + grid[r-(h-1)][c];
 
       }
-
       else if(i != 0 && i != h-1 && j != 0 && j != w-1){
         //IN MIDDLE SECTIONS SAME AS CLASSIC!!!!
         numNeighbors = grid[r-1][c-1] + grid[r-1][c] + grid[r-1][c+1] + grid[r][c+1] + grid[r+1][c-1] + grid[r+1][c] + grid[r+1][c+1]+ grid[r][c-1];
